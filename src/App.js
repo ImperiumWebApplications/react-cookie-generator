@@ -15,10 +15,21 @@ function App() {
       .then((data) => setCookies(data.cookies));
   };
 
+  const formatCookies = (str) => {
+    let result = "";
+    for (let i = 0; i < str?.length; i++) {
+      result += str[i];
+      if ((i + 1) % 32 === 0) {
+        result += "\n";
+      }
+    }
+    return result;
+  };
+
   return (
     <div className="App">
       <button onClick={handleClick}>Get Cookies</button>
-      <div>{cookies}</div>
+      <pre style={{ whiteSpace: "pre-wrap" }}>{formatCookies(cookies)}</pre>
     </div>
   );
 }
